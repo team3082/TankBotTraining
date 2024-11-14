@@ -27,28 +27,39 @@ public class TankDrive {
     double total = drive + rotate;
     double difference = drive - rotate;
 
+    double rightOutput = 0;
+    double leftOutput = 0;
+
     // Constraining by quadrant
     // Joystick (x,y) -> Motor output [L, R] (in terms of percent output)
     if (drive >= 0) { // Q1 and Q2
       if (rotate >= 0) { // Q1
         // (1, 1) -> [1, 0]
-        left.output(max);
-        right.output(difference);
+        leftOutput = (max);
+        rightOutput = (difference);
       } else { // Q2
         // (-1, 1) -> [0, 1]
-        left.output(total);
-        right.output(max);
+        leftOutput = (total);
+        rightOutput = (max);
       }
     } else { // Q3 and Q4
       if (rotate >= 0) { // Q4
         // (1,-1) -> [-1, 0]
-        right.output(-max);
-        left.output(total);
+        rightOutput = (-max);
+        leftOutput = (total);
       } else { // Q3
         // (-1,-1) -> [0, -1]
-        right.output(difference);
-        left.output(-max);
+        rightOutput = (difference);
+        leftOutput = (-max);
       }
+    }
+
+    if (Robot.isReal()) {
+      right.output(rightOutput);
+      left.output(leftOutput);
+    } else {
+      Telemetry.setSimRot(rightOutput - leftOutput);
+      Telemetry.setSimVelocity(leftOutput + rightOutput);
     }
   }
 }

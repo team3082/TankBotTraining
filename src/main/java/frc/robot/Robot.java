@@ -4,7 +4,6 @@
 
 package frc.robot;
 
-
 import edu.wpi.first.wpilibj.TimedRobot;
 
 /**
@@ -22,6 +21,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     TankDrive.init();
+    Telemetry.init();
   }
 
   @Override
@@ -40,6 +40,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
+    Telemetry.update();
     OI.update();
   }
 
