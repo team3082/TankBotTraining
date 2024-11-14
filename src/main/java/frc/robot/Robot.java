@@ -5,6 +5,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import frc.robot.Auto.AutoRoutines;
+import frc.robot.Auto.CAS.CommandRunner;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -20,18 +22,26 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    CommandRunner.addRoutineClass(new AutoRoutines());
     TankDrive.init();
     Telemetry.init();
   }
 
   @Override
-  public void robotPeriodic() {}
+  public void robotPeriodic() {
+    Telemetry.update();
+  }
 
   @Override
-  public void autonomousInit() {}
+  public void autonomousInit() {
+    CommandRunner.initRoutine();
+    
+  }
 
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+    CommandRunner.update();
+  }
 
   @Override
   public void teleopInit() {
@@ -40,7 +50,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    Telemetry.update();
     OI.update();
   }
 

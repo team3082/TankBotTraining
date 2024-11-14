@@ -4,6 +4,7 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Auto.CAS.CommandRunner;
 
 public class Telemetry {
   private static Field2d field;
@@ -15,6 +16,7 @@ public class Telemetry {
     field = new Field2d();
 
     SmartDashboard.putData("Field", field);
+    SmartDashboard.putData("AutoSelector", CommandRunner.getSelector());
   }
 
   public static void update() {
