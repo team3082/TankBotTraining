@@ -29,6 +29,8 @@ public class LoopCommand extends ChickenCommand{
     public void init(){
         isFinished=false;
         loopCycleOn=0;
+        currentCommandIndex = 0;
+        commands[currentCommandIndex].init();
     }
 
     @Override
@@ -74,8 +76,15 @@ public class LoopCommand extends ChickenCommand{
             loopCycleOn++;
 
             boolean wasLastCycle = loopCycleOn == loopAmount;
-            if(wasLastCycle) isFinished=true;
+            if(wasLastCycle){
+                isFinished=true;
+                return;
+            }
+            commands[currentCommandIndex].init();
+            return;
         }
+
+        commands[currentCommandIndex].init();
     }
 
     @Override

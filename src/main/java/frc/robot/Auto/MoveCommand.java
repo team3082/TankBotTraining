@@ -4,23 +4,25 @@ import edu.wpi.first.wpilibj.Timer;
 import frc.robot.Telemetry;
 import frc.robot.Auto.CAS.ChickenCommands.ChickenCommand;
 
-public class MoveFowardCommand extends ChickenCommand {
+public class MoveCommand extends ChickenCommand {
     double time;
     double startTime;
+    double speed;
 
-    public MoveFowardCommand(double time){
+    public MoveCommand(double time, double speed){
         this.time = time;
+        this.speed = speed;
     }
 
     public void init(){
         this.startTime = Timer.getFPGATimestamp();
         this.isFinished = false;
-        Telemetry.setSimVelocity(1);
+        Telemetry.setSimVelocity(speed);
     }
 
     public void update(){
         if(Timer.getFPGATimestamp() < startTime+time){
-            Telemetry.setSimVelocity(1);
+            Telemetry.setSimVelocity(speed);
             this.isFinished = false;
         } else {
             this.isFinished = true;
