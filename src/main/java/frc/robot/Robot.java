@@ -5,7 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import frc.robot.Auto.AutoRoutines;
+import frc.robot.Auto.Routine;
 import frc.robot.Auto.CAS.CommandRunner;
 
 /**
@@ -22,9 +22,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    CommandRunner.addRoutineClass(new AutoRoutines());
     TankDrive.init();
     Telemetry.init();
+    CommandRunner.addRoutineClass(new Routine());
   }
 
   @Override
@@ -34,13 +34,13 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    CommandRunner.initRoutine();
+    //CommandRunner.initRoutine();
     
   }
 
   @Override
   public void autonomousPeriodic() {
-    CommandRunner.update();
+    //CommandRunner.update();
   }
 
   @Override

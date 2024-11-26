@@ -7,11 +7,11 @@ public class TankDrive {
   static TankSide right;
 
   public static void init() {
-    VictorSPX backRight = new VictorSPX(0);
-    VictorSPX frontRight = new VictorSPX(0);
-    VictorSPX backLeft = new VictorSPX(0);
-    VictorSPX frontLeft = new VictorSPX(0);
-
+    VictorSPX backRight = new VictorSPX(1);
+    VictorSPX frontRight = new VictorSPX(2);
+    VictorSPX backLeft = new VictorSPX(4);
+    VictorSPX frontLeft = new VictorSPX(3);
+    
     left = new TankSide(frontLeft, backLeft, false);
     right = new TankSide(frontRight, backRight, true);
   }
@@ -45,12 +45,12 @@ public class TankDrive {
     } else { // Q3 and Q4
       if (rotate >= 0) { // Q4
         // (1,-1) -> [-1, 0]
-        rightOutput = (-max);
-        leftOutput = (total);
+        rightOutput = (total);
+        leftOutput = (-max);
       } else { // Q3
         // (-1,-1) -> [0, -1]
-        rightOutput = (difference);
-        leftOutput = (-max);
+        rightOutput = (-max);
+        leftOutput = (difference);
       }
     }
 

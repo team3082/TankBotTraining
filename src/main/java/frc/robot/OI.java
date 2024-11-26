@@ -11,12 +11,12 @@ public class OI {
 
   public static void update() {
     double leftY = -driverStick.getRawAxis(1);
-    double rightX = driverStick.getRawAxis(2);
+    double rightX = driverStick.getRawAxis(4);
 
     if (Math.abs(leftY) < 0.1) leftY = 0;
     if (Math.abs(rightX) < 0.1) rightX = 0;
 
-    TankDrive.arcadeDrive(rightX, leftY);
+    TankDrive.arcadeDrive(rightX*.5, leftY*.5);
 
     // TankDrive.drive(rightY, leftY);
   }
